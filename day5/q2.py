@@ -18,10 +18,7 @@ class Map:
             self._arr[sy, sx : ex + 1] += np.ones(ex - sx + 1, dtype=int)
         else:
             # diagnal
-            overlay = np.zeros(
-                (abs(ey - sy) + 1, abs(ex - sx) + 1), dtype=int
-            )  # optimization, use sparse matrix
-            np.fill_diagonal(overlay, 1)
+            overlay = np.eye(abs(ey - sy) + 1)
             if sy > ey:
                 # Because sx < sy, this means anti-diagonal
                 overlay = np.fliplr(overlay)
